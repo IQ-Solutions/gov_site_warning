@@ -1,0 +1,7 @@
+.warning-banner.ui-dialog .ui-dialog-titlebar {
+  display: none;
+}
+
+.warning-banner.ui-dialog {
+  max-width: 600px;
+}

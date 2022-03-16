@@ -1,0 +1,8 @@
+gov_site_warning.warning_banner_form:
+  path: '/admin/config/gov_site_warning/warning-banner'
+  defaults:
+   _form: '\Drupal\gov_site_warning\Form\WarningBannerForm'
+   _title: 'Government Warning Banner'
+  requirements:
+    _permission:
+      'administer site configuration'

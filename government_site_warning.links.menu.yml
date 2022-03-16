@@ -1,0 +1,5 @@
+gov_site_warning.config:
+  title: 'Warning Banner Config'
+  parent: system.admin_config
+  description: 'Government Warning banner configuration'
+  route_name: gov_site_warning.warning_banner_form

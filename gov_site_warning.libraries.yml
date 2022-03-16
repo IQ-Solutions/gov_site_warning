@@ -1,0 +1,11 @@
+gov_site_warning:
+  version: 1.x
+  css:
+    module:
+      css/gov_site_warning.css
+  js:
+    js/banner_modal.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.dialog.ajax
+    - core/js-cookie
