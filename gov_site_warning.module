@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implements hook_page_attachments().
+ */
+function gov_site_warning_page_attachments(array &$attachments)
+{
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    $warning_banner_settings = \Drupal::configFactory()->get('gov_site_warning.settings');
+
+    if ($warning_banner_settings) {
+
+      if (
+        !empty($warning_banner_settings->get('display_banner'))
+        && $warning_banner_settings->get('display_banner')
+      ) {
+        $configOutput = [
+          'message' => $warning_banner_settings->get('banner_message'),
+        ];
+
+        $attachments['#attached']['library'][] = 'gov_site_warning/assets';
+        $attachments['#attached']['drupalSettings']['gov_site_warning'] = $configOutput;
+      }
+    }
+  }
+}

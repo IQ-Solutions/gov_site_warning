@@ -9,7 +9,7 @@
       width: '90%',
       maxWidth: 600,
       open: function () {
-        $(this).html(settings.ninds_module.message);
+        $(this).html(settings.gov_site_warning.message);
       },
       buttons: [{
         text: 'Accept',
