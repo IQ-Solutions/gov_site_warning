@@ -1,8 +1,8 @@
 assets:
   version: 1.x
   css:
-    module:
-      css/gov_site_warning.css
+    base:
+      css/gov_site_warning.css: {}
   js:
     js/banner_modal.js: {}
   dependencies:
