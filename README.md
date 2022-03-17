@@ -15,7 +15,9 @@ Preferred installation is through composer.
 ```
 4. Add the module to composer: `composer require iq/gov_site_warning`
 
-_NOTE: Installing via composer will require you add a Github auth token on your local AND in whatever build process you have. Feel free to reach out and ask questions about this if you are unsure how to do this._
+_**NOTE About Github Auth Token**: Installing via composer will require you add a Github auth token on your local AND in whatever build process you have. Feel free to reach out and ask questions about this if you are unsure how to do this._
+
+_**NOTE ABOUT GITIGNORE**: You should add the module folder to the .gitignore file._
 ## Configuration
 Once installed you will need to check the configuration. Default warning language is included but since this may change per project, the value is configurable.
 
