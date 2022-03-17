@@ -1,0 +1,20 @@
+{
+  "name": "iq/gov_site_warning",
+  "description": "Creates a modal dialog with a customizable warning message.",
+  "type": "drupal-custom-module",
+  "keywords": [
+    "Drupal"
+  ],
+  "homepage": "https://github.com/IQ-Solutions/cecc",
+  "authors": [
+    {
+      "name": "Kevin L Rice",
+      "role": "Maintainer",
+      "email": "krice@iqsolutions.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/IQ-Solutions/gov_site_warning/issues",
+    "source": "https://github.com/IQ-Solutions/gov_site_warning"
+  }
+}
