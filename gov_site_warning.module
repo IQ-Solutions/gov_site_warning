@@ -29,20 +29,23 @@ function gov_site_warning_page_attachments(array &$attachments) {
        * @var bool $allowed_path
        *   Returns true if current alias/path is in the filter by path config.
        */
-      $allowed_path = $pathMatcher
-      ->matchPath($currentAlias, $warning_banner_settings->get('filter_by_path'));
+      $allowed_path = !empty($warning_banner_settings->get('filter_by_path'))
+      ? $pathMatcher
+      ->matchPath($currentAlias, $warning_banner_settings->get('filter_by_path'))
+      : TRUE;
 
-      if (
-        $allowed_path
-        && !empty($warning_banner_settings->get('display_banner'))
-        && $warning_banner_settings->get('display_banner')
-      ) {
-        $configOutput = [
-          'message' => $warning_banner_settings->get('banner_message'),
-        ];
+      if($allowed_path) {
+        if (
+          !empty($warning_banner_settings->get('display_banner'))
+          && $warning_banner_settings->get('display_banner')
+        ) {
+          $configOutput = [
+            'message' => $warning_banner_settings->get('banner_message'),
+          ];
 
-        $attachments['#attached']['library'][] = 'gov_site_warning/assets';
-        $attachments['#attached']['drupalSettings']['gov_site_warning'] = $configOutput;
+          $attachments['#attached']['library'][] = 'gov_site_warning/assets';
+          $attachments['#attached']['drupalSettings']['gov_site_warning'] = $configOutput;
+        }
       }
     }
   }
