@@ -67,7 +67,7 @@ class WarningBannerForm extends ConfigFormBase {
     $this->config('gov_site_warning.settings')
       ->set('banner_message', $formatted_text['value'])
       ->set('display_banner', $form_state->getValue('display_banner'))
-      ->set('display_banner', $form_state->getValue('filter_by_path'))
+      ->set('filter_by_path', $form_state->getValue('filter_by_path'))
       ->set('banner_message_format', $formatted_text['format'])
       ->save();
 
