@@ -2,3 +2,4 @@ banner_message: "<p>You are accessing a U.S. Government web site which may conta
 display_banner: 1
 banner_message_format: basic_html
 filter_by_path: ""
+always_show: 0

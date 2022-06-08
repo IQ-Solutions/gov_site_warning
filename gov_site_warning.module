@@ -41,6 +41,8 @@ function gov_site_warning_page_attachments(array &$attachments) {
         ) {
           $configOutput = [
             'message' => $warning_banner_settings->get('banner_message'),
+            'always_show' => !empty($warning_banner_settings->get('always_show'))
+            ? $warning_banner_settings->get('always_show') : 0,
           ];
 
           $attachments['#attached']['library'][] = 'gov_site_warning/assets';

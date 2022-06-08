@@ -33,10 +33,18 @@ class WarningBannerForm extends ConfigFormBase {
     $config = $this->config('gov_site_warning.settings');
 
     $form['display_banner'] = [
-      '#title' => $this->t("Show/Hide Government site banner"),
-      '#description' => $this->t("Show or hide the pop up."),
+      '#title' => $this->t("Enable government site banner"),
+      '#description' => $this->t("Enable the pop up display."),
       '#type' => 'checkbox',
       '#default_value' => $config->get('display_banner'),
+    ];
+
+    $form['always_show'] = [
+      '#title' => $this->t("Banner should always display."),
+      '#description' => $this->t("Warning banner will always display regardless of how often the user visits the site."),
+      '#type' => 'checkbox',
+      '#default_value' => !empty($config->get('always_show')) ?
+      $config->get('always_show') : 0,
     ];
 
     $form['banner_message'] = [
@@ -68,6 +76,7 @@ class WarningBannerForm extends ConfigFormBase {
       ->set('banner_message', $formatted_text['value'])
       ->set('display_banner', $form_state->getValue('display_banner'))
       ->set('filter_by_path', $form_state->getValue('filter_by_path'))
+      ->set('always_show', $form_state->getValue('always_show'))
       ->set('banner_message_format', $formatted_text['format'])
       ->save();
 

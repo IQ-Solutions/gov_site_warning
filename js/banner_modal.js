@@ -1,6 +1,7 @@
 (function ($, Drupal, settings, cookies) {
   "use strict";
-  var bannerCookie = cookies.get('gov_warning_banner');
+  var bannerCookie = settings.gov_site_warning.always_show == 0 ?
+    cookies.get('gov_warning_banner') : undefined;
 
   if (bannerCookie === undefined) {
     var $myDialog = $('<div></div>').appendTo('body');
