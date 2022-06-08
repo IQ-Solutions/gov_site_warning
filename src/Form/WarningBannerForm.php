@@ -32,6 +32,13 @@ class WarningBannerForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('gov_site_warning.settings');
 
+    $form['display_banner'] = [
+      '#title' => $this->t("Show/Hide Government site banner"),
+      '#description' => $this->t("Show or hide the pop up."),
+      '#type' => 'checkbox',
+      '#default_value' => $config->get('display_banner'),
+    ];
+
     $form['banner_message'] = [
       '#title' => $this->t("US government warning banner message"),
       '#description' => $this->t("Text displayed in modal pop up"),
@@ -41,11 +48,12 @@ class WarningBannerForm extends ConfigFormBase {
       '#format' => $config->get('banner_message_format'),
     ];
 
-    $form['display_banner'] = [
-      '#title' => $this->t("Show/Hide Government site banner"),
-      '#description' => $this->t("Show or hide the pop up."),
-      '#type' => 'checkbox',
-      '#default_value' => $config->get('display_banner'),
+    $form['filter_by_path'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Display banner on the listed paths.'),
+      '#description' => $this->t('Enter a new path on each line. To include sub-paths add an asterisk Example: <br>"&lt;front&gt;": front page<br>"/example": only this page<br>"/example/*": this page and pages below it<br>"!/example": not on this page'),
+      '#default_value' => $config->get('filter_by_path'),
+      '#format' => 'plain_text',
     ];
 
     return parent::buildForm($form, $form_state);
@@ -59,6 +67,7 @@ class WarningBannerForm extends ConfigFormBase {
     $this->config('gov_site_warning.settings')
       ->set('banner_message', $formatted_text['value'])
       ->set('display_banner', $form_state->getValue('display_banner'))
+      ->set('display_banner', $form_state->getValue('filter_by_path'))
       ->set('banner_message_format', $formatted_text['format'])
       ->save();
 

@@ -3,15 +3,38 @@
 /**
  * Implements hook_page_attachments().
  */
-function gov_site_warning_page_attachments(array &$attachments)
-{
+function gov_site_warning_page_attachments(array &$attachments) {
+
+  /**
+   * @var \Drupal\Core\Path\CurrentPathStack $currentPath
+   *   Drupal Patch Matcher service.
+   */
+  $currentPath = \Drupal::service('path.current')->getPath();
+  /**
+   * @var \Drupal\path_alias\AliasManager $currentPath
+   *   Drupal Patch Matcher service.
+   */
+  $currentAlias = \Drupal::service('path_alias.manager')->getAliasByPath($currentPath);
+  /**
+   * @var \Drupal\Core\Path\PathMatcher $pathMatcher
+   *   Drupal Patch Matcher service.
+   */
+  $pathMatcher = \Drupal::service('path.matcher');
+
   if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
     $warning_banner_settings = \Drupal::configFactory()->get('gov_site_warning.settings');
 
     if ($warning_banner_settings) {
+      /**
+       * @var bool $allowed_path
+       *   Returns true if current alias/path is in the filter by path config.
+       */
+      $allowed_path = $pathMatcher
+      ->matchPath($currentAlias, $warning_banner_settings->get('filter_by_path'));
 
       if (
-        !empty($warning_banner_settings->get('display_banner'))
+        $allowed_path
+        && !empty($warning_banner_settings->get('display_banner'))
         && $warning_banner_settings->get('display_banner')
       ) {
         $configOutput = [
