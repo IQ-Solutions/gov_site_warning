@@ -2,4 +2,4 @@ type: module
 name: 'Government Site Warning Popup'
 description: 'Creates a modal dialog with a customizable warning message.'
 package: 'Other'
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
